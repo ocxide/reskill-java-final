@@ -1,10 +1,30 @@
 services:
-  users-db:
+  migrate:
+    build:
+      context: .
+      dockerfile: migrations.Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      USER: postgres
+      PASSWORD: postgres
+      USERS_SERVICE_DB: users
+    volumes:
+      - ./usersservice/init.sql:/migrations/usersservice.sql
+
+  db:
     image: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    healthcheck:
+      test: pg_isready -U $$POSTGRES_USER
+      interval: 5s
+      timeout: 5s
+      retries: 5
     volumes:
       - /var/lib/postgresql/data
+

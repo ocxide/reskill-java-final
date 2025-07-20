@@ -4,8 +4,8 @@ import com.ocxide.usersservice.domain.User;
 
 import reactor.core.publisher.Mono;
 
-public class CreateOneService {
+public record CreateOneService(UsersRepository repository) {
 	public Mono<Void> createOne(User user) {
-		return Mono.just(1).then();
+		return repository.createOne(user);
 	}
 }
