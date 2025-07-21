@@ -1,6 +1,6 @@
-package com.ocxide.usersservice.application;
+package com.ocxide.usersservice.users.application;
 
-import com.ocxide.usersservice.domain.User;
+import com.ocxide.usersservice.users.domain.User;
 
 import reactor.core.publisher.Mono;
 

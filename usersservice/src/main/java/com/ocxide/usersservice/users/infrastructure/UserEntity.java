@@ -1,4 +1,4 @@
-package com.ocxide.usersservice.infrastructure;
+package com.ocxide.usersservice.users.infrastructure;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;

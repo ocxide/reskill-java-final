@@ -1,4 +1,4 @@
-package com.ocxide.usersservice.domain;
+package com.ocxide.usersservice.users.domain;
 
 public class UsernameAlreadyTakenError extends Exception {
 	public UsernameAlreadyTakenError(String message) {

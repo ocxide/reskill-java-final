@@ -1,4 +1,4 @@
-package com.ocxide.usersservice.infrastructure;
+package com.ocxide.usersservice.users.infrastructure;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.ocxide.usersservice.application.CreateOneService;
+import com.ocxide.usersservice.users.application.CreateOneService;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
