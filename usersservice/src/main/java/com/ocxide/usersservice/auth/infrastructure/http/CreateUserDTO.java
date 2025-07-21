@@ -1,4 +1,4 @@
-package com.ocxide.usersservice.users.infrastructure;
+package com.ocxide.usersservice.auth.infrastructure.http;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

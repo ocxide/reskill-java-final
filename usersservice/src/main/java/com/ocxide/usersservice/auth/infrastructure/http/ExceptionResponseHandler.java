@@ -1,4 +1,4 @@
-package com.ocxide.usersservice.users.infrastructure;
+package com.ocxide.usersservice.auth.infrastructure.http;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.ocxide.usersservice.users.domain.UsernameAlreadyTakenError;
+import com.ocxide.usersservice.auth.domain.UsernameAlreadyTakenError;
 
 @ControllerAdvice
 public class ExceptionResponseHandler {

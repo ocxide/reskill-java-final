@@ -1,11 +1,12 @@
-package com.ocxide.usersservice.users.infrastructure;
+package com.ocxide.usersservice.auth.infrastructure.db;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Repository;
 
+import com.ocxide.usersservice.auth.domain.User;
+import com.ocxide.usersservice.auth.domain.UsernameAlreadyTakenError;
+import com.ocxide.usersservice.auth.infrastructure.UserMapper;
 import com.ocxide.usersservice.users.application.UsersRepository;
-import com.ocxide.usersservice.users.domain.User;
-import com.ocxide.usersservice.users.domain.UsernameAlreadyTakenError;
 
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Mono;

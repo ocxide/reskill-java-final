@@ -1,9 +1,11 @@
-package com.ocxide.usersservice.users.infrastructure;
+package com.ocxide.usersservice.auth.infrastructure;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import com.ocxide.usersservice.users.domain.User;
+import com.ocxide.usersservice.auth.infrastructure.db.UserEntity;
+import com.ocxide.usersservice.auth.infrastructure.http.CreateUserDTO;
+import com.ocxide.usersservice.auth.domain.User;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
