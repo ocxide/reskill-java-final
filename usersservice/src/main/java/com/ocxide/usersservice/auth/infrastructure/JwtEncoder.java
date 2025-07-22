@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 import com.ocxide.usersservice.auth.domain.ClaimsEncoder;
 import com.ocxide.usersservice.auth.domain.UserPayload;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class JwtEncoder implements ClaimsEncoder {
 	private final JwtSecret secret;
 
-	@Value("${rootProject.name}")
-	private final String issuer;
+	@Value("${spring.application.name}")
+	private String issuer;
 
 	@Value("${jwt.expiration}")
-	private final Long expiration;
+	private Long expiration;
 
 	@Override
 	public String encode(UserPayload payload) {

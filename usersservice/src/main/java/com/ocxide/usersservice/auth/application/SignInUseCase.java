@@ -1,6 +1,6 @@
 package com.ocxide.usersservice.auth.application;
 
-import com.ocxide.usersservice.auth.domain.AuthRepository;
+import com.ocxide.usersservice.auth.domain.UsersRepository;
 import com.ocxide.usersservice.auth.domain.ClaimsEncoder;
 import com.ocxide.usersservice.auth.domain.InvalidCredentialsError;
 import com.ocxide.usersservice.auth.domain.PasswordVerifier;
@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
 public class SignInUseCase {
-	private final AuthRepository repository;
+	private final UsersRepository repository;
 	private final ClaimsEncoder encoder;
 	private final PasswordVerifier verifier;
 
