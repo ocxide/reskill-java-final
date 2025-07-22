@@ -20,10 +20,12 @@ public class SignInUseCase {
 			var equal = verifier.verify(password, user.password());
 			if (!equal) {
 				sink.error(new InvalidCredentialsError());
+				return;
 			}
 
 			var token = encoder.encode(new UserPayload(user.id(), user.username()));
 			sink.next(token);
+			sink.complete();
 		});
 	}
 }

@@ -1,11 +1,11 @@
 package com.ocxide.usersservice.auth.infrastructure.http;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ocxide.usersservice.auth.application.RegisterUseCase;
 import com.ocxide.usersservice.auth.application.SignInUseCase;
@@ -15,8 +15,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Mono;
 
-@Controller
-@RequestMapping("/auth")
+@RestController
+@RequestMapping("auth")
 @AllArgsConstructor
 public class AuthController {
 	private final RegisterUseCase createOneService;
