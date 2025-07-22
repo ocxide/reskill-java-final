@@ -1,4 +1,3 @@
--- autoincremental
 CREATE TABLE IF NOT EXISTS users (
 	id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	username VARCHAR(20) NOT NULL UNIQUE,

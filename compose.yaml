@@ -10,8 +10,7 @@ services:
       USER: postgres
       PASSWORD: postgres
       USERS_SERVICE_DB: users
-    volumes:
-      - ./usersservice/init.sql:/migrations/usersservice.sql
+      BOOKS_SERVICE_DB: books
 
   db:
     image: postgres
