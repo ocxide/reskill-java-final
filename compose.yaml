@@ -11,6 +11,7 @@ services:
       PASSWORD: postgres
       USERS_SERVICE_DB: users
       BOOKS_SERVICE_DB: books
+      BORROWINGS_SERVICE_DB: borrowings
 
   db:
     image: postgres
