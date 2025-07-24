@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 public record CreateOneUseCase(BookCopiesRepository repository) {
 
-	public Mono<Void> run(BookCopy copy) {
+	public Mono<Long> run(BookCopy copy) {
 		return repository.createOne(copy);
 	}
 }

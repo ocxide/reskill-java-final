@@ -24,7 +24,7 @@ public class BookCopiesController {
 
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<Void> createOne(@RequestBody CreateBookCopyDTO dto) {
+	public Mono<Long> createOne(@RequestBody CreateBookCopyDTO dto) {
 		var copy = mapper.toDomain(dto);
 		return createOneUseCase.run(copy);
 	}

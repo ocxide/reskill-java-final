@@ -24,9 +24,9 @@ public class BookEditionsController {
 
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<Void> createOne(@RequestBody @Valid CreateBookEditionDTO body) {
+	public Mono<Long> createOne(@RequestBody @Valid CreateBookEditionDTO body) {
 		var edition = mapper.toDomain(body);
-		return createOneUseCase.run(edition).then();
+		return createOneUseCase.run(edition);
 	}
 
 }

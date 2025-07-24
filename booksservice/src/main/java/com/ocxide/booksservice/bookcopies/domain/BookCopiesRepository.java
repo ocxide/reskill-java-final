@@ -4,5 +4,5 @@ import reactor.core.publisher.Mono;
 
 public interface BookCopiesRepository {
 
-	Mono<Void> createOne(BookCopy bookCopy);
+	Mono<Long> createOne(BookCopy bookCopy);
 }

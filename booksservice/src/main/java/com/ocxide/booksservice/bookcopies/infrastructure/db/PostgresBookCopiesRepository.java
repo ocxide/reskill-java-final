@@ -16,8 +16,8 @@ public class PostgresBookCopiesRepository implements BookCopiesRepository {
 	private final BookCopiesMapper mapper;
 
 	@Override
-	public Mono<Void> createOne(BookCopy bookCopy) {
-		return repository.save(mapper.toEntity(bookCopy)).then();
+	public Mono<Long> createOne(BookCopy bookCopy) {
+		return repository.save(mapper.toEntity(bookCopy)).map(e -> e.getId());
 	}
 
 }

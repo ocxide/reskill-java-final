@@ -6,22 +6,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.data.r2dbc.DataR2dbcTest;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.ActiveProfiles;
 
 import com.ocxide.booksservice.bookcopies.domain.BookCopy;
 import com.ocxide.booksservice.bookcopies.domain.CopyStatus;
-import com.ocxide.booksservice.bookcopies.infrastructure.BookCopiesMapperImpl;
 import com.ocxide.booksservice.bookeditions.domain.BookEdition;
-import com.ocxide.booksservice.bookeditions.infrastructure.BookEditionsMapperImpl;
-import com.ocxide.booksservice.bookeditions.infrastructure.ISBNMapperImpl;
 import com.ocxide.booksservice.bookeditions.infrastructure.db.PostgresBookEditionsRepository;
+import com.ocxide.booksservice.shared.infrastructure.db.PostgresRepositoryTestImports;
 
 import reactor.test.StepVerifier;
 
 @DataR2dbcTest
-@ActiveProfiles("test")
-@Import({ PostgresBookCopiesRepository.class, PostgresBookEditionsRepository.class, BookCopiesMapperImpl.class,
-		BookEditionsMapperImpl.class, ISBNMapperImpl.class })
+@Import(PostgresRepositoryTestImports.class)
 public class PostgresBookCopiesRepositoryTests {
 
 	@Autowired
