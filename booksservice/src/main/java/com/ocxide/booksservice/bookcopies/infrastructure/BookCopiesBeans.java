@@ -10,7 +10,7 @@ import com.ocxide.booksservice.bookcopies.domain.BookCopiesRepository;
 public class BookCopiesBeans {
 
 	@Bean
-	CreateOneUseCase createOneUseCase(BookCopiesRepository repository) {
+	CreateOneUseCase createCopyUseCase(BookCopiesRepository repository) {
 		return new CreateOneUseCase(repository);
 	}
 }
