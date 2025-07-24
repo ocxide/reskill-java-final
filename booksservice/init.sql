@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS book_copies (
 	book_edition_id bigint NOT NULL,
 
 	status VARCHAR(20) NOT NULL,
-	ingresed_at TIMESTAMP DEFAULT now(),
+	ingressed_at TIMESTAMP DEFAULT now(),
 
-	FOREIGN KEY (book_edition_id) REFERENCES book_editions(id),
+	FOREIGN KEY (book_edition_id) REFERENCES book_editions(id)
 );

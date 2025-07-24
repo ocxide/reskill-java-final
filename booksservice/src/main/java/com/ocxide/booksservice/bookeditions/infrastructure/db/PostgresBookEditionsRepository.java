@@ -19,11 +19,11 @@ public class PostgresBookEditionsRepository implements BookEditionsRepository {
 	private final BookEditionsMapper mapper;
 
 	@Override
-	public Mono<Void> createOne(BookEdition bookEdition) {
+	public Mono<Long> createOne(BookEdition bookEdition) {
 		var entity = mapper.toEntity(bookEdition);
 		return repository.save(entity)
 				.onErrorMap(DataIntegrityViolationException.class, e -> new ISBNAlreadyExistsError(bookEdition.isbn()))
-				.then();
+				.map(e -> e.getId());
 	}
 
 }

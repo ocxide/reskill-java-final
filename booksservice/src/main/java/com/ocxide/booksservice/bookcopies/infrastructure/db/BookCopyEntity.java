@@ -3,6 +3,7 @@ package com.ocxide.booksservice.bookcopies.infrastructure.db;
 import java.time.Instant;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,7 +19,11 @@ public class BookCopyEntity {
 	@Id
 	private Long id;
 
+	@Column("book_edition_id")
 	private Long bookEditionId;
+
 	private String status;
+
+	@Column("ingressed_at")
 	private Instant ingressedAt;
 }

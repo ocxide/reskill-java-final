@@ -7,7 +7,7 @@ import reactor.core.publisher.Mono;
 
 public record CreateOneUseCase(BookEditionsRepository repository) {
 
-	public Mono<Void> run(BookEdition edition) {
+	public Mono<Long> run(BookEdition edition) {
 		return repository.createOne(edition);
 	}
 }
