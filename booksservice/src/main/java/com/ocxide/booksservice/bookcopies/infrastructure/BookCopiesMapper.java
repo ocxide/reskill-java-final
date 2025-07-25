@@ -10,6 +10,7 @@ import org.mapstruct.Named;
 import com.ocxide.booksservice.bookcopies.domain.BookCopy;
 import com.ocxide.booksservice.bookcopies.infrastructure.db.BookCopyEntity;
 import com.ocxide.booksservice.bookcopies.infrastructure.http.CreateBookCopyDTO;
+import com.ocxide.booksservice.bookcopies.infrastructure.http.GetOneBookCopyDTO;
 
 @Mapper(componentModel = "spring")
 public interface BookCopiesMapper {
@@ -23,5 +24,8 @@ public interface BookCopiesMapper {
 		return ingressedAt.orElseGet(() -> Instant.now());
 	}
 
+	@Mapping(target = "id", ignore = true)
 	BookCopyEntity toEntity(BookCopy bookCopy);
+
+	GetOneBookCopyDTO toDto(BookCopy bookCopy);
 }
