@@ -3,6 +3,7 @@ package com.ocxide.borrowingsservice.borrowings.infrastructure;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import com.ocxide.borrowingsservice.borrowings.infrastructure.db.BorrowingEntity;
 import com.ocxide.borrowingsservice.borrowings.infrastructure.http.CreateBorrowingDTO;
 import com.ocxide.borrowingsservice.domain.Borrowing;
 
@@ -10,4 +11,7 @@ import com.ocxide.borrowingsservice.domain.Borrowing;
 public interface BorrowingsMapper {
 	@Mapping(target = "borrowedAt", expression = "java(java.time.Instant.now())")
 	Borrowing toDomain(CreateBorrowingDTO dto);
+
+	@Mapping(target = "id", ignore = true)
+	BorrowingEntity toEntity(Borrowing domain);
 }
