@@ -52,17 +52,17 @@ services:
       db:
         condition: service_healthy
 
-  booksservice:
-    build:
-      context: ./booksservice
-      dockerfile: Dockerfile
-    ports:
-      - "8081:80"
-    environment:
-      DB_USER: postgres
-      DB_PASSWORD: postgres
-    depends_on:
-      db:
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
+  # booksservice:
+  #   build:
+  #     context: ./booksservice
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8081:80"
+  #   environment:
+  #     DB_USER: postgres
+  #     DB_PASSWORD: postgres
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #     kafka:
+  #       condition: service_healthy

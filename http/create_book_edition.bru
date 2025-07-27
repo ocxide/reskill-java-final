@@ -1,19 +1,18 @@
 meta {
-  name: borrow
+  name: create_book_edition
   type: http
-  seq: 5
+  seq: 6
 }
 
 post {
-  url: http://localhost:8080/borrowings/
+  url: http://localhost:8083/bookcopies/
   body: json
   auth: inherit
 }
 
 body:json {
   {
-    "userId": 1,
-    "bookCopyId": 12
+    
   }
 }
 

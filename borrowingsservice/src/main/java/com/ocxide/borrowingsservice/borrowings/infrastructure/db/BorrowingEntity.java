@@ -6,7 +6,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 @Table("borrowings")
+@Getter
+@Setter
 public class BorrowingEntity {
 
 	@Id

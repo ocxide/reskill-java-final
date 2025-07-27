@@ -10,6 +10,7 @@ import com.ocxide.booksservice.bookcopies.application.CreateOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.GetOneUseCase;
 import com.ocxide.booksservice.bookcopies.infrastructure.BookCopiesMapper;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 
@@ -29,7 +30,7 @@ public class BookCopiesController {
 
 	@PostMapping("/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Mono<Long> createOne(@RequestBody CreateBookCopyDTO dto) {
+	public Mono<Long> createOne(@RequestBody @Valid CreateBookCopyDTO dto) {
 		var copy = mapper.toDomain(dto);
 		return createOneUseCase.run(copy);
 	}

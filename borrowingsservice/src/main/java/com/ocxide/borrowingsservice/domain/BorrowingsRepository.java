@@ -3,5 +3,5 @@ package com.ocxide.borrowingsservice.domain;
 import reactor.core.publisher.Mono;
 
 public interface BorrowingsRepository {
-	Mono<Void> createOne(Borrowing borrowing);
+	Mono<Long> createOne(Borrowing borrowing);
 }

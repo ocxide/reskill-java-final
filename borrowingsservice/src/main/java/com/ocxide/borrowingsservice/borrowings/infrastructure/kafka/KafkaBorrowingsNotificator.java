@@ -12,11 +12,11 @@ import reactor.core.publisher.Mono;
 @Service
 @AllArgsConstructor
 public class KafkaBorrowingsNotificator implements BorrowingsNotificator {
-	private final KafkaTemplate<String, Borrowing> kafkaTemplate;
+	private final KafkaTemplate<String, String> kafkaTemplate;
 
 	@Override
 	public Mono<Void> onCopyBorrowed(Borrowing borrowing) {
-		var fut = kafkaTemplate.send("borrow", borrowing);
+		var fut = kafkaTemplate.send("bookcopies.borrow", borrowing.bookCopyId().toString());
 		return Mono.fromFuture(fut).then();
 	}
 
