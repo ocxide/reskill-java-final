@@ -7,6 +7,7 @@ import com.ocxide.borrowingsservice.domain.Borrowing;
 import com.ocxide.borrowingsservice.domain.BorrowingsRepository;
 
 import lombok.AllArgsConstructor;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -20,6 +21,11 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 	public Mono<Long> createOne(Borrowing borrowing) {
 		return repository.save(mapper.toEntity(borrowing))
 				.map(entity -> entity.getId());
+	}
+
+	@Override
+	public Flux<Borrowing> listPerUser(Long userId) {
+		return repository.findAllByUserId(userId).map(mapper::entityToDomain);
 	}
 
 	

@@ -1,0 +1,15 @@
+meta {
+  name: get_borrowings_per_user
+  type: http
+  seq: 7
+}
+
+get {
+  url: http://localhost:8080/borrowings/user/1
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

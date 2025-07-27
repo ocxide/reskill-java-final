@@ -1,0 +1,12 @@
+package com.ocxide.borrowingsservice.application;
+
+import com.ocxide.borrowingsservice.domain.Borrowing;
+import com.ocxide.borrowingsservice.domain.BorrowingsRepository;
+
+import reactor.core.publisher.Flux;
+
+public record ListPerUserUseCase(BorrowingsRepository repository) {
+	public Flux<Borrowing> listPerUser(Long userId) {
+		return repository.listPerUser(userId);
+	}
+}
