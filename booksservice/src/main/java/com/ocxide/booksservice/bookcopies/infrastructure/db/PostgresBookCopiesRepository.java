@@ -27,4 +27,12 @@ public class PostgresBookCopiesRepository implements BookCopiesRepository {
 		return repository.findById(id).map(entity -> Optional.of(mapper.entityToDomain(entity)))
 				.switchIfEmpty(Mono.just(Optional.empty()));
 	}
+
+	@Override
+	public Mono<Void> updateOne(Long id, BookCopy copy) {
+		var entity = mapper.toEntity(copy);
+		entity.setId(id);
+
+		return repository.save(entity).then();
+	}
 }
