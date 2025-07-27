@@ -17,7 +17,7 @@ import org.springframework.http.HttpStatus;
 
 import reactor.core.publisher.Mono;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
 @RequestMapping("/bookcopies")
@@ -36,7 +36,7 @@ public class BookCopiesController {
 
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public Mono<GetOneBookCopyDTO> getOne(@RequestParam @NotNull Long id) {
+	public Mono<GetOneBookCopyDTO> getOne(@PathVariable @NotNull Long id) {
 		return getOneUseCase.run(id)
 				.map(mapper::toDto);
 	}
