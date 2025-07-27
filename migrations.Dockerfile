@@ -6,7 +6,7 @@ ARG USER
 
 COPY usersservice/init.sql /migrations/usersservice.sql
 COPY booksservice/init.sql /migrations/bookservice.sql
-COPY borrowingservice/init.sql /migrations/borrowingservice.sql
+COPY borrowingsservice/init.sql /migrations/borrowingsservice.sql
 
 COPY createdb.sh /migrations/createdb.sh
 RUN chmod +x /migrations/createdb.sh
@@ -18,6 +18,6 @@ CMD /bin/sh -c "\
   echo Running migrations...; \
 	PGPASSWORD=${PASSWORD} psql -h db -U ${USER} -d ${USERS_SERVICE_DB} -f /migrations/usersservice.sql; \
 	PGPASSWORD=${PASSWORD} psql -h db -U ${USER} -d ${BOOKS_SERVICE_DB} -f /migrations/bookservice.sql; \
-	PGPASSWORD=${PASSWORD} psql -h db -U ${USER} -d ${BORROWINGS_SERVICE_DB} -f /migrations/borrowingservice.sql; \
+	PGPASSWORD=${PASSWORD} psql -h db -U ${USER} -d ${BORROWINGS_SERVICE_DB} -f /migrations/borrowingsservice.sql; \
   echo Migrations completed. \
 "
