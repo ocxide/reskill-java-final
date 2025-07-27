@@ -28,4 +28,6 @@ public interface BookCopiesMapper {
 	BookCopyEntity toEntity(BookCopy bookCopy);
 
 	GetOneBookCopyDTO toDto(BookCopy bookCopy);
+
+	BookCopy entityToDomain(BookCopyEntity bookCopyEntity);
 }

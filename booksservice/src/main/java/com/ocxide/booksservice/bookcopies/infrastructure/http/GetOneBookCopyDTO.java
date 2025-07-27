@@ -6,7 +6,7 @@ import com.ocxide.booksservice.bookcopies.domain.CopyStatus;
 
 import jakarta.validation.constraints.NotNull;
 
-public record GetOneBookCopyDTO(@NotNull Long id,
+public record GetOneBookCopyDTO(
 		@NotNull Long bookEditionId,
 		@NotNull Instant ingressedAt,
 		@NotNull CopyStatus status) {

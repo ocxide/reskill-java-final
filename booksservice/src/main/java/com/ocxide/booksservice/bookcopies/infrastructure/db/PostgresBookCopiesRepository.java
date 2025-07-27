@@ -1,5 +1,7 @@
 package com.ocxide.booksservice.bookcopies.infrastructure.db;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Repository;
 
 import com.ocxide.booksservice.bookcopies.domain.BookCopiesRepository;
@@ -20,4 +22,9 @@ public class PostgresBookCopiesRepository implements BookCopiesRepository {
 		return repository.save(mapper.toEntity(bookCopy)).map(e -> e.getId());
 	}
 
+	@Override
+	public Mono<Optional<BookCopy>> getOne(Long id) {
+		return repository.findById(id).map(entity -> Optional.of(mapper.entityToDomain(entity)))
+				.switchIfEmpty(Mono.just(Optional.empty()));
+	}
 }
