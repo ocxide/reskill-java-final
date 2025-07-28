@@ -1,12 +1,12 @@
 package com.ocxide.borrowingsservice.application;
 
-import com.ocxide.borrowingsservice.domain.BookCopiesRepository;
-import com.ocxide.borrowingsservice.domain.BookCopyNotAvailable;
-import com.ocxide.borrowingsservice.domain.BookCopyNotFound;
-import com.ocxide.borrowingsservice.domain.Borrowing;
-import com.ocxide.borrowingsservice.domain.BorrowingsNotificator;
-import com.ocxide.borrowingsservice.domain.BorrowingsRepository;
-import com.ocxide.borrowingsservice.domain.CopyStatus;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopiesRepository;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotAvailable;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotFound;
+import com.ocxide.borrowingsservice.borrowings.domain.Borrowing;
+import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsNotificator;
+import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsRepository;
+import com.ocxide.borrowingsservice.borrowings.domain.CopyStatus;
 
 import reactor.core.publisher.Mono;
 

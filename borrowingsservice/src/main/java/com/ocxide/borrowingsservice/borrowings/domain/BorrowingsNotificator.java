@@ -1,4 +1,4 @@
-package com.ocxide.borrowingsservice.domain;
+package com.ocxide.borrowingsservice.borrowings.domain;
 
 import reactor.core.publisher.Mono;
 

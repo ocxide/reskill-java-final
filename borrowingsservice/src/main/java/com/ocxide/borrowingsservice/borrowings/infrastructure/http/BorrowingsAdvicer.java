@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
-import com.ocxide.borrowingsservice.domain.BookCopyNotAvailable;
-import com.ocxide.borrowingsservice.domain.BookCopyNotFound;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotAvailable;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotFound;
 
 @ControllerAdvice
 public class BorrowingsAdvicer {

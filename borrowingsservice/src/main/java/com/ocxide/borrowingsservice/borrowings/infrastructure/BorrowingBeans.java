@@ -8,9 +8,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.ocxide.borrowingsservice.application.CreateOneUseCase;
 import com.ocxide.borrowingsservice.application.ListPerUserUseCase;
 import com.ocxide.borrowingsservice.application.ReturnCopyUseCase;
-import com.ocxide.borrowingsservice.domain.BookCopiesRepository;
-import com.ocxide.borrowingsservice.domain.BorrowingsNotificator;
-import com.ocxide.borrowingsservice.domain.BorrowingsRepository;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopiesRepository;
+import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsNotificator;
+import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsRepository;
 
 @Configuration
 public class BorrowingBeans {

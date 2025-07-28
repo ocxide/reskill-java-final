@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import com.ocxide.borrowingsservice.domain.BookCopiesRepository;
-import com.ocxide.borrowingsservice.domain.BookCopy;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopiesRepository;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopy;
 
 import reactor.core.publisher.Mono;
 

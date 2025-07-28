@@ -6,7 +6,7 @@ import org.mapstruct.Mapping;
 import com.ocxide.borrowingsservice.borrowings.infrastructure.db.BorrowingEntity;
 import com.ocxide.borrowingsservice.borrowings.infrastructure.http.CreateBorrowingDTO;
 import com.ocxide.borrowingsservice.borrowings.infrastructure.http.ItemBorrowingDTO;
-import com.ocxide.borrowingsservice.domain.Borrowing;
+import com.ocxide.borrowingsservice.borrowings.domain.Borrowing;
 
 @Mapper(componentModel = "spring", uses = { PostgresIntervalMapper.class })
 public interface BorrowingsMapper {

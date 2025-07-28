@@ -3,8 +3,8 @@ package com.ocxide.borrowingsservice.borrowings.infrastructure.kafka;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
-import com.ocxide.borrowingsservice.domain.Borrowing;
-import com.ocxide.borrowingsservice.domain.BorrowingsNotificator;
+import com.ocxide.borrowingsservice.borrowings.domain.Borrowing;
+import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsNotificator;
 
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Mono;

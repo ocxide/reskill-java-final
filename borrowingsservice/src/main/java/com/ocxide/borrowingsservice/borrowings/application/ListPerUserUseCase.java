@@ -1,7 +1,7 @@
 package com.ocxide.borrowingsservice.application;
 
-import com.ocxide.borrowingsservice.domain.Borrowing;
-import com.ocxide.borrowingsservice.domain.BorrowingsRepository;
+import com.ocxide.borrowingsservice.borrowings.domain.Borrowing;
+import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsRepository;
 
 import reactor.core.publisher.Flux;
 

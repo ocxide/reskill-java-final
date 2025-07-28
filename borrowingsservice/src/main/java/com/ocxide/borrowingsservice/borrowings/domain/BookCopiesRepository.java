@@ -1,4 +1,4 @@
-package com.ocxide.borrowingsservice.domain;
+package com.ocxide.borrowingsservice.borrowings.domain;
 
 import java.util.Optional;
 
