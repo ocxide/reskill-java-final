@@ -1,14 +1,14 @@
 package com.ocxide.borrowingsservice.borrowings.infrastructure.http;
 
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.http.HttpStatus;
 
 import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotAvailable;
 import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotFound;
 
-@ControllerAdvice
+@RestControllerAdvice
 public class BorrowingsAdvicer {
 
 	@ExceptionHandler(BookCopyNotFound.class)
