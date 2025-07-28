@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import io.r2dbc.postgresql.codec.Interval;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,4 +26,7 @@ public class BorrowingEntity {
 
 	@Column("borrowed_at")
 	public Instant borrowedAt;
+
+	@Column("expires_past")
+	public Interval expiresPast;
 }
