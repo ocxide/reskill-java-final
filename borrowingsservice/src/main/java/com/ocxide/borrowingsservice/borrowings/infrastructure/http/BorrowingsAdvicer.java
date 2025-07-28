@@ -13,11 +13,16 @@ public class BorrowingsAdvicer {
 
 	@ExceptionHandler(BookCopyNotFound.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
-	public void handleBookNotFound(BookCopyNotFound e) {
+	public Object handleBookNotFound(BookCopyNotFound e) {
+		return new ErrorMessage(e.getMessage());
 	}
 
 	@ExceptionHandler(BookCopyNotAvailable.class)
 	@ResponseStatus(HttpStatus.CONFLICT)
-	public void handleBookCopyNotAvailable(BookCopyNotAvailable e) {
+	public Object handleBookCopyNotAvailable(BookCopyNotAvailable e) {
+		return new ErrorMessage(e.getMessage());
 	}
+}
+
+record ErrorMessage(String message) {
 }
