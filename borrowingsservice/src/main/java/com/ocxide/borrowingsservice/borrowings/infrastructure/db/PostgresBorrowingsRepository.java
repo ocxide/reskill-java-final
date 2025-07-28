@@ -28,5 +28,15 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 		return repository.findAllByUserId(userId).map(mapper::entityToDomain);
 	}
 
+	@Override
+	public Mono<Void> deleteOne(Long id) {
+		return repository.deleteById(id);
+	}
+
+	@Override
+	public Mono<Borrowing> getOne(Long id) {
+		return repository.findById(id).map(mapper::entityToDomain);
+	}
+
 	
 }

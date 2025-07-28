@@ -5,4 +5,5 @@ import reactor.core.publisher.Mono;
 public interface BorrowingsNotificator {
 
 	Mono<Void> onCopyBorrowed(Borrowing borrowing);	
+	Mono<Void> onCopyReturned(Borrowing borrowing);
 }

@@ -1,0 +1,15 @@
+meta {
+  name: return_borrowing
+  type: http
+  seq: 8
+}
+
+patch {
+  url: http://localhost:8080/borrowings/1/return
+  body: none
+  auth: inherit
+}
+
+settings {
+  encodeUrl: true
+}

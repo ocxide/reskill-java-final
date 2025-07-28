@@ -7,6 +7,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.ocxide.borrowingsservice.application.CreateOneUseCase;
 import com.ocxide.borrowingsservice.application.ListPerUserUseCase;
+import com.ocxide.borrowingsservice.application.ReturnCopyUseCase;
 import com.ocxide.borrowingsservice.domain.BookCopiesRepository;
 import com.ocxide.borrowingsservice.domain.BorrowingsNotificator;
 import com.ocxide.borrowingsservice.domain.BorrowingsRepository;
@@ -29,5 +30,11 @@ public class BorrowingBeans {
 	@Bean
 	ListPerUserUseCase listPerUserUseCase(BorrowingsRepository borrowingsRepository) {
 		return new ListPerUserUseCase(borrowingsRepository);
+	}
+
+	@Bean
+	ReturnCopyUseCase returnCopyUseCase(BorrowingsRepository borrowingsRepository,
+			BorrowingsNotificator notificator) {
+		return new ReturnCopyUseCase(borrowingsRepository, notificator);
 	}
 }

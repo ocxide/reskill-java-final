@@ -20,4 +20,10 @@ public class KafkaBorrowingsNotificator implements BorrowingsNotificator {
 		return Mono.fromFuture(fut).then();
 	}
 
+	@Override
+	public Mono<Void> onCopyReturned(Borrowing borrowing) {
+		var fut = kafkaTemplate.send("bookcopies.return", borrowing.bookCopyId().toString());
+		return Mono.fromFuture(fut).then();
+	}
+
 }
