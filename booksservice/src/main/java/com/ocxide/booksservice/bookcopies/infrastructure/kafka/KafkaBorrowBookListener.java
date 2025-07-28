@@ -3,7 +3,7 @@ package com.ocxide.booksservice.bookcopies.infrastructure.kafka;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
-import com.ocxide.booksservice.bookcopies.application.BorrowOneUseCase;
+import com.ocxide.booksservice.bookcopies.application.OnBorrowOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.OnOneReturnedUseCase;
 
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class KafkaBorrowBookListener {
-	private final BorrowOneUseCase borrowOneUseCase;
+	private final OnBorrowOneUseCase borrowOneUseCase;
 	private final OnOneReturnedUseCase onOneReturnedUseCase;
 
 	@KafkaListener(topics = "bookcopies.borrow")

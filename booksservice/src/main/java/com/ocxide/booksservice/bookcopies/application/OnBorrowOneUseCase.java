@@ -8,7 +8,7 @@ import com.ocxide.booksservice.bookcopies.domain.CopyStatus;
 
 import reactor.core.publisher.Mono;
 
-public record BorrowOneUseCase(BookCopiesRepository repository) {
+public record OnBorrowOneUseCase(BookCopiesRepository repository) {
 
 	public Mono<Void> run(Long id) {
 		return repository.getOne(id).flatMap(response -> {

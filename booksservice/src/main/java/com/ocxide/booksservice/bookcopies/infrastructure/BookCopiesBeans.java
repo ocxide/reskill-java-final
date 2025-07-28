@@ -3,7 +3,7 @@ package com.ocxide.booksservice.bookcopies.infrastructure;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.ocxide.booksservice.bookcopies.application.BorrowOneUseCase;
+import com.ocxide.booksservice.bookcopies.application.OnBorrowOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.CreateOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.GetOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.OnOneReturnedUseCase;
@@ -23,8 +23,8 @@ public class BookCopiesBeans {
 	}
 
 	@Bean
-	BorrowOneUseCase borrowCopyUseCase(BookCopiesRepository repository) {
-		return new BorrowOneUseCase(repository);
+	OnBorrowOneUseCase borrowCopyUseCase(BookCopiesRepository repository) {
+		return new OnBorrowOneUseCase(repository);
 	}
 
 	@Bean
