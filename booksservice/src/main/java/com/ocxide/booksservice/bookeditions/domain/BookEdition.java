@@ -1,4 +1,6 @@
 package com.ocxide.booksservice.bookeditions.domain;
 
-public record BookEdition(String title, String author, String isbn) {
+public record BookEdition(
+		Long id,
+		String title, String author, String isbn) {
 }

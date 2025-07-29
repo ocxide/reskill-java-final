@@ -9,6 +9,7 @@ import com.ocxide.booksservice.bookeditions.domain.ISBNAlreadyExistsError;
 import com.ocxide.booksservice.bookeditions.infrastructure.BookEditionsMapper;
 
 import lombok.AllArgsConstructor;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Repository
@@ -24,6 +25,12 @@ public class PostgresBookEditionsRepository implements BookEditionsRepository {
 		return repository.save(entity)
 				.onErrorMap(DataIntegrityViolationException.class, e -> new ISBNAlreadyExistsError(bookEdition.isbn()))
 				.map(e -> e.getId());
+	}
+
+	@Override
+	public Flux<BookEdition> findAll() {
+		return repository.findAll()
+				.map(mapper::toDomain);
 	}
 
 }
