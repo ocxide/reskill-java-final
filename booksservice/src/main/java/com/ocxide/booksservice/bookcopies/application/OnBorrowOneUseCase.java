@@ -19,7 +19,7 @@ public record OnBorrowOneUseCase(BookCopiesRepository repository) {
 			var copy = response.get();
 			if (copy.status() != CopyStatus.Available) return Mono.error(new BookCopyNotAvailable());
 			
-			copy = new BookCopy(copy.bookEditionId(), CopyStatus.Borrowed, copy.ingressedAt());
+			copy = new BookCopy(id, copy.bookEditionId(), CopyStatus.Borrowed, copy.ingressedAt());
 
 			return repository.updateOne(id, copy);
 		});

@@ -17,7 +17,7 @@ public record OnOneReturnedUseCase(BookCopiesRepository repository) {
 
 			var copy = response.get();
 
-			copy = new BookCopy(copy.bookEditionId(), CopyStatus.Available, copy.ingressedAt());
+			copy = new BookCopy(id, copy.bookEditionId(), CopyStatus.Available, copy.ingressedAt());
 
 			return repository.updateOne(id, copy);
 		});

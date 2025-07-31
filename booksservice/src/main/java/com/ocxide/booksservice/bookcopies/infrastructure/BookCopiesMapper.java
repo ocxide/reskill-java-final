@@ -17,6 +17,7 @@ public interface BookCopiesMapper {
 
 	@Mapping(target = "ingressedAt", qualifiedByName = "defaultInstant")
 	@Mapping(target = "status", constant = "Available")
+	@Mapping(target = "id", ignore = true)
 	BookCopy toDomain(CreateBookCopyDTO createBookCopyDTO);
 
 	@Named("defaultInstant")
@@ -24,7 +25,6 @@ public interface BookCopiesMapper {
 		return ingressedAt.orElseGet(() -> Instant.now());
 	}
 
-	@Mapping(target = "id", ignore = true)
 	BookCopyEntity toEntity(BookCopy bookCopy);
 
 	GetOneBookCopyDTO toDto(BookCopy bookCopy);
