@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ocxide.booksservice.bookcopies.application.CreateOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.GetOneUseCase;
+import com.ocxide.booksservice.bookcopies.application.ListPerEditionUseCase;
 import com.ocxide.booksservice.bookcopies.infrastructure.BookCopiesMapper;
 
 import jakarta.validation.Valid;
@@ -16,6 +17,7 @@ import lombok.AllArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class BookCopiesController {
 	private final CreateOneUseCase createOneUseCase;
 	private final GetOneUseCase getOneUseCase;
+	private final ListPerEditionUseCase listPerEditionUseCase;
 	private final BookCopiesMapper mapper;
 
 	@PostMapping("/")
@@ -39,6 +42,13 @@ public class BookCopiesController {
 	@ResponseStatus(HttpStatus.OK)
 	public Mono<GetOneBookCopyDTO> getOne(@PathVariable @NotNull Long id) {
 		return getOneUseCase.run(id)
+				.map(mapper::toDto);
+	}
+
+	@GetMapping("/editions/{id}")
+	@ResponseStatus(HttpStatus.OK)
+	public Flux<GetOneBookCopyDTO> listPerEdition(@PathVariable @NotNull Long id) {
+		return listPerEditionUseCase.run(id)
 				.map(mapper::toDto);
 	}
 }

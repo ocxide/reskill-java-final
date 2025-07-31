@@ -2,6 +2,7 @@ package com.ocxide.booksservice.bookcopies.domain;
 
 import java.util.Optional;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface BookCopiesRepository {
@@ -11,4 +12,6 @@ public interface BookCopiesRepository {
 	Mono<Optional<BookCopy>> getOne(Long id);
 
 	Mono<Void> updateOne(Long id, BookCopy copy);
+
+	Flux<BookCopy> findAllByEditionId(Long editionId);
 }

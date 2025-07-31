@@ -9,6 +9,7 @@ import com.ocxide.booksservice.bookcopies.domain.BookCopy;
 import com.ocxide.booksservice.bookcopies.infrastructure.BookCopiesMapper;
 
 import lombok.AllArgsConstructor;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @AllArgsConstructor
@@ -34,5 +35,10 @@ public class PostgresBookCopiesRepository implements BookCopiesRepository {
 		entity.setId(id);
 
 		return repository.save(entity).then();
+	}
+
+	@Override
+	public Flux<BookCopy> findAllByEditionId(Long editionId) {
+		return repository.findAllByBookEditionId(editionId).map(mapper::entityToDomain);
 	}
 }

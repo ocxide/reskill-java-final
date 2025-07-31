@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import com.ocxide.booksservice.bookcopies.application.OnBorrowOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.CreateOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.GetOneUseCase;
+import com.ocxide.booksservice.bookcopies.application.ListPerEditionUseCase;
 import com.ocxide.booksservice.bookcopies.application.OnOneReturnedUseCase;
 import com.ocxide.booksservice.bookcopies.domain.BookCopiesRepository;
 
@@ -30,5 +31,10 @@ public class BookCopiesBeans {
 	@Bean
 	OnOneReturnedUseCase onCopyReturnedUseCase(BookCopiesRepository repository) {
 		return new OnOneReturnedUseCase(repository);
+	}
+
+	@Bean
+	ListPerEditionUseCase listPerEditionUseCase(BookCopiesRepository repository) {
+		return new ListPerEditionUseCase(repository);
 	}
 }
