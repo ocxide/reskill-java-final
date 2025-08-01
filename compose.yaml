@@ -26,7 +26,7 @@ services:
       timeout: 5s
       retries: 5
     volumes:
-      - /var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   kafka:
     image: apache/kafka:latest
@@ -38,6 +38,8 @@ services:
       timeout: 10s
       retries: 10
       start_period: 4s # Gives Kafka time to initialize before health checks begin
+    volumes:
+      - kafka_data:/var/lib/kafka/data
 
   userservice:
     build:
@@ -66,3 +68,7 @@ services:
   #       condition: service_healthy
   #     kafka:
   #       condition: service_healthy
+
+volumes:
+  kafka_data:
+  postgres_data:

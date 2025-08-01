@@ -15,17 +15,18 @@ public class KafkaBorrowBookListener {
 	private final OnOneReturnedUseCase onOneReturnedUseCase;
 
 	@KafkaListener(topics = "bookcopies.borrow")
-	public void listen(String content) {
-		var id = Long.parseLong(content); 
-		borrowOneUseCase.run(id).subscribe(v -> {}, error -> {
+	public void listen(CopyBorrowedDTO content) {
+		var id = content.bookCopyId();
+		borrowOneUseCase.run(id).subscribe(v -> {
+		}, error -> {
 			System.out.println("An error ocurred while marking a book as borrowed: " + error);
 		});
 	}
 
 	@KafkaListener(topics = "bookcopies.return")
-	public void listenReturn(String content) {
-		var id = Long.parseLong(content); 
-		onOneReturnedUseCase.run(id).subscribe(v -> {}, error -> {
+	public void listenReturn(Long id) {
+		onOneReturnedUseCase.run(id).subscribe(v -> {
+		}, error -> {
 			System.out.println("An error ocurred while marking a book as returned: " + error);
 		});
 	}

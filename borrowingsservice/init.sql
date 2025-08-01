@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS borrowings (
 	user_id bigint NOT NULL,
 	book_copy_id bigint NOT NULL,
 
-	expires_past INTERVAL UNIQUE,
+	expires_past INTERVAL,
 	borrowed_at TIMESTAMP DEFAULT now()
 );
 
