@@ -60,7 +60,7 @@ services:
       context: ./usersservice
       dockerfile: Dockerfile
     ports:
-      - "8082:80"
+      - "8081:80"
     environment:
       DB_USER: postgres
       DB_PASSWORD: postgres
@@ -73,7 +73,22 @@ services:
       context: ./booksservice
       dockerfile: Dockerfile
     ports:
-      - "8081:80"
+      - "8080:80"
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+
+  borrowingsservice:
+    build:
+      context: ./borrowingsservice
+      dockerfile: Dockerfile
+    ports:
+      - "8082:80"
     environment:
       DB_USER: postgres
       DB_PASSWORD: postgres
