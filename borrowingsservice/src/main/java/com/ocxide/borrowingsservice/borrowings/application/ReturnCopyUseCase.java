@@ -1,4 +1,4 @@
-package com.ocxide.borrowingsservice.application;
+package com.ocxide.borrowingsservice.borrowings.application;
 
 import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsNotificator;
 import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsRepository;

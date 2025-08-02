@@ -1,4 +1,4 @@
-package com.ocxide.borrowingsservice.application;
+package com.ocxide.borrowingsservice.borrowings.application;
 
 import com.ocxide.borrowingsservice.borrowings.domain.BookCopiesRepository;
 import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotAvailable;

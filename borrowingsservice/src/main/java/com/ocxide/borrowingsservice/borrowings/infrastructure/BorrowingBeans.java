@@ -5,9 +5,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import com.ocxide.borrowingsservice.application.CreateOneUseCase;
-import com.ocxide.borrowingsservice.application.ListPerUserUseCase;
-import com.ocxide.borrowingsservice.application.ReturnCopyUseCase;
+import com.ocxide.borrowingsservice.borrowings.application.CreateOneUseCase;
+import com.ocxide.borrowingsservice.borrowings.application.ListPerUserUseCase;
+import com.ocxide.borrowingsservice.borrowings.application.ReturnCopyUseCase;
 import com.ocxide.borrowingsservice.borrowings.domain.BookCopiesRepository;
 import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsNotificator;
 import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsRepository;
