@@ -32,12 +32,26 @@ services:
     image: apache/kafka:latest
     ports:
       - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_KRAFT_MODE: "true"  # Enables KRaft mode.
+      KAFKA_PROCESS_ROLES: controller,broker  # Kafka acts as both controller and broker.
+      KAFKA_NODE_ID: 1  # Unique ID for the Kafka instance.
+      KAFKA_CONTROLLER_QUORUM_VOTERS: "1@localhost:9093"  # Controller quorum.
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"  # Enables automatic topic creation.
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1  # Single replica for simplicity.
+      KAFKA_LOG_RETENTION_HOURS: 168  # Log retention period (7 days).
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0  # No rebalance delay.
     healthcheck:
-      test: ["CMD-SHELL", "nc -z localhost 9092 || exit 1"] # Checks if Kafka's port is open
-      interval: 5s
-      timeout: 10s
-      retries: 10
-      start_period: 4s # Gives Kafka time to initialize before health checks begin
+      test: ["CMD", "echo", ">/dev/tcp/localhost/9092"]
+      interval: 10s
+      retries: 5
+      timeout: 4s
     volumes:
       - kafka_data:/var/lib/kafka/data
 
@@ -54,20 +68,20 @@ services:
       db:
         condition: service_healthy
 
-  # booksservice:
-  #   build:
-  #     context: ./booksservice
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "8081:80"
-  #   environment:
-  #     DB_USER: postgres
-  #     DB_PASSWORD: postgres
-  #   depends_on:
-  #     db:
-  #       condition: service_healthy
-  #     kafka:
-  #       condition: service_healthy
+  booksservice:
+    build:
+      context: ./booksservice
+      dockerfile: Dockerfile
+    ports:
+      - "8081:80"
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    depends_on:
+      db:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
 
 volumes:
   kafka_data:
