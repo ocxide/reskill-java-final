@@ -25,4 +25,10 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 		return repository.deleteById(id).then();
 	}
 
+	@Override
+	public Mono<Borrowing> getOneByBookCopy(Long bookCopyId) {
+		return repository.findByBookCopyId(bookCopyId)
+				.map(mapper::toDomain);
+	}
+
 }

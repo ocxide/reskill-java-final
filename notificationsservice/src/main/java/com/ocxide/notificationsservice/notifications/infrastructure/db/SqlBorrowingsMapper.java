@@ -16,6 +16,9 @@ public interface SqlBorrowingsMapper {
 	@Mapping(target = "expiresPast", qualifiedByName = "durationToInterval")
 	BorrowingEntity toEntity(Borrowing borrowing);
 
+	@Mapping(target = "expiresPast", qualifiedByName = "intervalToDuration")
+	Borrowing toDomain(BorrowingEntity entity);
+
 	@Named("durationToInterval")
 	default Interval toInterval(Duration duration) {
 		return Interval.of(duration);
