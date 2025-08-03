@@ -24,6 +24,6 @@ public record CreateOneUseCase(BookCopiesRepository bookCopiesRepository, Borrow
 
 			return borrowingsRepository.createOne(borrowing);
 		})
-				.flatMap(v -> notificator.onCopyBorrowed(borrowing));
+				.flatMap(created -> notificator.onCopyBorrowed(created));
 	}
 }

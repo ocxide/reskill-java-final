@@ -5,7 +5,7 @@ import reactor.core.publisher.Mono;
 
 public interface BorrowingsRepository {
 
-	Mono<Long> createOne(Borrowing borrowing);
+	Mono<Borrowing> createOne(Borrowing borrowing);
 
 	Flux<Borrowing> listPerUser(Long userId);
 

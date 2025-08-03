@@ -18,9 +18,8 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 	private final BorrowingsMapper mapper;
 
 	@Override
-	public Mono<Long> createOne(Borrowing borrowing) {
-		return repository.save(mapper.toEntity(borrowing))
-				.map(entity -> entity.getId());
+	public Mono<Borrowing> createOne(Borrowing borrowing) {
+		return repository.save(mapper.toEntity(borrowing)).map(mapper::entityToDomain);
 	}
 
 	@Override
@@ -38,5 +37,4 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 		return repository.findById(id).map(mapper::entityToDomain);
 	}
 
-	
 }
