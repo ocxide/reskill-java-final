@@ -10,7 +10,7 @@ import jakarta.validation.constraints.Size;
 public record ISBNDto(
 	@NotBlank(message = "ISBN is required")
 	@Size(max = 17, min = 17, message = "ISBN should be 17 characters long")
-	@Pattern(regexp = "\\d{3}-\\d{1}-\\d{3}-\\d{5}-\\d{1}", message = "Invalid ISBN")
+	@Pattern(regexp = "\\d{3}-\\d{1}-\\d{3}-\\d{5}-\\d{1}", message = "Invalid ISBN, expected format: XXX-X-XXX-XXXXX-X")
 	String value) {
 
 	@JsonValue
