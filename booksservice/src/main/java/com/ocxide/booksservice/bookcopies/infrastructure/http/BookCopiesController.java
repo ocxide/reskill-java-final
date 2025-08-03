@@ -11,6 +11,9 @@ import com.ocxide.booksservice.bookcopies.application.GetOneUseCase;
 import com.ocxide.booksservice.bookcopies.application.ListPerEditionUseCase;
 import com.ocxide.booksservice.bookcopies.infrastructure.BookCopiesMapper;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.info.Info;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RestController
 @RequestMapping("/bookcopies")
 @AllArgsConstructor
+@OpenAPIDefinition(info = @Info(title = "BookCopiesController", version = "1.0", description = "Operations over book copies"))
 public class BookCopiesController {
 	private final CreateOneUseCase createOneUseCase;
 	private final GetOneUseCase getOneUseCase;
@@ -45,10 +49,11 @@ public class BookCopiesController {
 				.map(mapper::toDto);
 	}
 
-	@GetMapping("/editions/{id}")
+	@GetMapping("/editions/{bookEditionId}")
+	@Operation(summary = "List book copies per edition")
 	@ResponseStatus(HttpStatus.OK)
-	public Flux<GetOneBookCopyDTO> listPerEdition(@PathVariable @NotNull Long id) {
-		return listPerEditionUseCase.run(id)
+	public Flux<GetOneBookCopyDTO> listPerEdition(@PathVariable @NotNull Long bookEditionId) {
+		return listPerEditionUseCase.run(bookEditionId)
 				.map(mapper::toDto);
 	}
 }

@@ -6,6 +6,7 @@ import com.ocxide.booksservice.bookeditions.application.CreateOneUseCase;
 import com.ocxide.booksservice.bookeditions.application.ListAllUseCase;
 import com.ocxide.booksservice.bookeditions.infrastructure.BookEditionsMapper;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Flux;
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.http.HttpStatus;
 
 @RestController
-@RequestMapping("bookeditions")
+@RequestMapping("/bookeditions")
 @AllArgsConstructor
 public class BookEditionsController {
 	private final BookEditionsMapper mapper;
@@ -34,6 +35,7 @@ public class BookEditionsController {
 	}
 
 	@GetMapping("/")
+	@Operation(summary = "List all book editions")
 	@ResponseStatus(HttpStatus.OK)
 	public Flux<GetBookEditionDTO> getAll() {
 		return listAllUseCase.run().map(mapper::toDto);

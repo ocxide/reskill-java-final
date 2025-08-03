@@ -13,6 +13,8 @@ import com.ocxide.borrowingsservice.borrowings.application.ListPerUserUseCase;
 import com.ocxide.borrowingsservice.borrowings.application.ReturnCopyUseCase;
 import com.ocxide.borrowingsservice.borrowings.infrastructure.BorrowingsMapper;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -29,18 +31,22 @@ public class BorrowingsController {
 	private final BorrowingsMapper mapper;
 
 	@PostMapping("/")
+	@Operation(summary = "Borrow a BookCopy by a user until for a certain duration")
 	public Mono<Long> createOne(@RequestBody @Valid CreateBorrowingDTO body) {
 		var borrowing = mapper.toDomain(body);
 		return createOne.createOne(borrowing);
 	}
 
 	@GetMapping("/user/{userId}")
+	@Operation(summary = "List all borrowings by user")
 	public Flux<ItemBorrowingDTO> getBorrowingsByUserId(@PathVariable @NotNull Long userId) {
 		return listPerUser.listPerUser(userId).map(mapper::domainToDTO);
 	}
 
 	@PatchMapping("/{id}/return")
-	public Mono<Void> returnOne(@PathVariable @NotNull Long id) {
+	@Operation(summary = "Return a borrowed BookCopy")
+	public Mono<Void> returnOne(
+			@PathVariable @NotNull @Schema(description = "id of the borrowing created in POST /borrowings") Long id) {
 		return returnCopy.run(id);
 	}
 }
