@@ -4,6 +4,7 @@ import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 import com.ocxide.notificationsservice.notifications.application.OnBookCopyBorrowedUseCase;
+import com.ocxide.notificationsservice.notifications.application.OnBookCopyReturnedUseCase;
 
 import lombok.AllArgsConstructor;
 
@@ -12,10 +13,19 @@ import lombok.AllArgsConstructor;
 public class KafkaBorrowingEventsListener {
 	private final KafkaBorrowingEventsMapper mapper;
 	private final OnBookCopyBorrowedUseCase onBookCopyBorrowed;
+	private final OnBookCopyReturnedUseCase onBookCopyReturned;
 
 	@KafkaListener(topics = "bookcopies.borrow")
 	public void onBorrowingEvent(BookCopyBorrowedEvent event) {
 		onBookCopyBorrowed.run(mapper.toDomain(event)).subscribe(v -> {
+		}, err -> {
+			System.out.println(err.getMessage());
+		});
+	}
+
+	@KafkaListener(topics = "bookcopies.return")
+	public void onReturnEvent(Long bookCopyId) {
+		onBookCopyReturned.run(bookCopyId).subscribe(v -> {
 		}, err -> {
 			System.out.println(err.getMessage());
 		});
