@@ -11,19 +11,18 @@ import reactor.core.publisher.Mono;
 @Service
 @AllArgsConstructor
 public class PostgresBorrowingsRepository implements BorrowingsRepository {
+	private final SqlBorrowingsMapper mapper;
 	private final ReactiveBorrowingsRepository repository;
 
 	@Override
 	public Mono<Void> createOne(Borrowing borrowing) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'createOne'");
+		var entity = mapper.toEntity(borrowing);
+		return repository.save(entity).then();
 	}
 
 	@Override
 	public Mono<Void> deleteOne(Long id) {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'deleteOne'");
+		return repository.deleteById(id).then();
 	}
 
-	
 }
