@@ -11,6 +11,8 @@ import com.ocxide.usersservice.auth.application.RegisterUseCase;
 import com.ocxide.usersservice.auth.application.SignInUseCase;
 import com.ocxide.usersservice.auth.infrastructure.UserMapper;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import reactor.core.publisher.Mono;
@@ -24,13 +26,16 @@ public class AuthController {
 	private final UserMapper userMapper;
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@PostMapping("/")
+	@Operation(summary = "Register a new user")
+	@PostMapping("/register")
 	public Mono<Void> createOne(@RequestBody @Valid CreateUserDTO body) {
 		var user = userMapper.fromDto(body);
 		return createOneService.run(user);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
+	@Operation(summary = "Sign in as a user")
+	@ApiResponse(description = "JWT token of the signed in user", responseCode = "200")
 	@PostMapping("/signin")
 	public Mono<String> signIn(@RequestBody @Valid SignInDTO body) {
 		return signInService.run(body.username(), body.password());
