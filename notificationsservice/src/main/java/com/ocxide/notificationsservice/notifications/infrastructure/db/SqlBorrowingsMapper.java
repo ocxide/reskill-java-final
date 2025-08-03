@@ -17,6 +17,7 @@ public interface SqlBorrowingsMapper {
 	BorrowingEntity toEntity(Borrowing borrowing);
 
 	@Mapping(target = "expiresPast", qualifiedByName = "intervalToDuration")
+	@Mapping(target = "withExpirationNotified", ignore = true)
 	Borrowing toDomain(BorrowingEntity entity);
 
 	@Named("durationToInterval")

@@ -40,4 +40,9 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 				.map(mapper::toDomain);
 	}
 
+	@Override
+	public Mono<Void> updateOne(Borrowing borrowing) {
+		var entity = mapper.toEntity(borrowing);
+		return repository.save(entity).then();
+	}
 }

@@ -16,8 +16,11 @@ public record BorrowingsNearExpirationUseCase(
 	public Mono<Void> run() {
 		return repository.getAllNearExpiration(threshold)
 				.flatMap(borrowing -> {
-					var delete = repository.deleteOne(borrowing.id());
-					return notificator.onNearExpiration(new BookCopyNearExpiration(borrowing)).then(delete);
+
+					borrowing = borrowing.withExpirationNotified(true);
+
+					var update = repository.updateOne(borrowing);
+					return notificator.onNearExpiration(new BookCopyNearExpiration(borrowing)).then(update);
 				}).then();
 	}
 }

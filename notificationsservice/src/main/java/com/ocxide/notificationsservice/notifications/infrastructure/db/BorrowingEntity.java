@@ -29,5 +29,8 @@ public class BorrowingEntity {
 
 	@Column("expires_past")
 	public Interval expiresPast;
+
+	@Column("expiration_notified")
+	public Boolean expirationNotified;
 }
 

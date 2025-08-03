@@ -28,8 +28,7 @@ public class FileNotificator implements Notificator {
 			@Value("${notifications.file}") String path) throws IOException {
 		var filepath = Paths.get(path);
 
-		this.file = AsynchronousFileChannel.open(filepath, StandardOpenOption.APPEND, StandardOpenOption.WRITE,
-				StandardOpenOption.CREATE);
+		this.file = AsynchronousFileChannel.open(filepath, StandardOpenOption.CREATE, StandardOpenOption.WRITE);
 	}
 
 	private Mono<FileLock> lock() {
@@ -79,6 +78,5 @@ public class FileNotificator implements Notificator {
 	public Mono<Void> onNearExpiration(BookCopyNearExpiration borrowing) {
 		return this.append(borrowing);
 	}
-
 
 }
