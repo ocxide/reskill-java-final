@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ocxide.borrowingsservice.application.CreateOneUseCase;
-import com.ocxide.borrowingsservice.application.ListPerUserUseCase;
-import com.ocxide.borrowingsservice.application.ReturnCopyUseCase;
+import com.ocxide.borrowingsservice.borrowings.application.CreateOneUseCase;
+import com.ocxide.borrowingsservice.borrowings.application.ListPerUserUseCase;
+import com.ocxide.borrowingsservice.borrowings.application.ReturnCopyUseCase;
 import com.ocxide.borrowingsservice.borrowings.infrastructure.BorrowingsMapper;
 
 import jakarta.validation.Valid;
