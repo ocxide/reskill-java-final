@@ -6,7 +6,7 @@ import com.ocxide.notificationsservice.notifications.domain.Notificator;
 
 import reactor.core.publisher.Mono;
 
-public record OnBookCopyBorrowed(BorrowingsRepository repository, Notificator notificator) {
+public record OnBookCopyBorrowedUseCase(BorrowingsRepository repository, Notificator notificator) {
 
 	public Mono<Void> run(Borrowing borrowing) {
 		return repository.createOne(borrowing).then(notificator.onBorrowed(borrowing));
