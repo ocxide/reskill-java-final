@@ -6,4 +6,5 @@ public interface Notificator {
 
 	Mono<Void> onBorrowed(Borrowing borrowing);
 	Mono<Void> onReturned(Borrowing borrowing);
+	Mono<Void> onNearExpiration(Borrowing borrowing);
 }

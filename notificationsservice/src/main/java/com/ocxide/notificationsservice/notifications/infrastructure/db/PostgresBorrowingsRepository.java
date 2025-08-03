@@ -1,11 +1,14 @@
 package com.ocxide.notificationsservice.notifications.infrastructure.db;
 
+import java.time.Duration;
+
 import org.springframework.stereotype.Service;
 
 import com.ocxide.notificationsservice.notifications.domain.Borrowing;
 import com.ocxide.notificationsservice.notifications.domain.BorrowingsRepository;
 
 import lombok.AllArgsConstructor;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -28,6 +31,12 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 	@Override
 	public Mono<Borrowing> getOneByBookCopy(Long bookCopyId) {
 		return repository.findByBookCopyId(bookCopyId)
+				.map(mapper::toDomain);
+	}
+
+	@Override
+	public Flux<Borrowing> getAllNearExpiration(Duration threshold) {
+		return repository.findByNearExpiration(mapper.toInterval(threshold))
 				.map(mapper::toDomain);
 	}
 
