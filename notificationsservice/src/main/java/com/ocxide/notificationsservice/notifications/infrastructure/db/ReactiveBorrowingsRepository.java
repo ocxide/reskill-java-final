@@ -11,6 +11,6 @@ public interface ReactiveBorrowingsRepository extends ReactiveCrudRepository<Bor
 
 	Mono<BorrowingEntity> findByBookCopyId(Long bookCopyId);
 
-	@Query("SELECT * FROM borrowings WHERE expiration_notified = false AND (NOW() - (borrowed_at + expires_past)) <= :threshold")
+	@Query("SELECT * FROM borrowings WHERE expiration_notified = false AND ((borrowed_at + expires_past) - NOW()) <= :threshold")
 	Flux<BorrowingEntity> findByNearExpiration(Interval threshold);
 }

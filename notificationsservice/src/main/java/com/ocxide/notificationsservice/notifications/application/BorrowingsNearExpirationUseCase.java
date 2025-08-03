@@ -14,6 +14,7 @@ public record BorrowingsNearExpirationUseCase(
 		Notificator notificator) {
 
 	public Mono<Void> run() {
+		System.out.println("threshold: " + threshold);
 		return repository.getAllNearExpiration(threshold)
 				.flatMap(borrowing -> {
 
