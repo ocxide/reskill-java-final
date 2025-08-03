@@ -2,14 +2,7 @@ package com.ocxide.notificationsservice.notifications.infrastructure.filesystem;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.nio.channels.AsynchronousFileChannel;
-import java.nio.channels.CompletionHandler;
-import java.nio.channels.FileLock;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.time.Instant;
-import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -35,6 +28,7 @@ public class FileNotificator implements Notificator, AutoCloseable {
 
 		return Mono.fromCallable(() -> {
 			this.file.write(buf);
+			this.file.flush();
 			return 1;
 		}).then();
 	}
