@@ -20,6 +20,7 @@ public class PostgresBorrowingsRepository implements BorrowingsRepository {
 	@Override
 	public Mono<Void> createOne(Borrowing borrowing) {
 		var entity = mapper.toEntity(borrowing);
+		entity.setId(null);
 		return repository.save(entity).then();
 	}
 
