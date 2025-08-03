@@ -1,4 +1,4 @@
-# reskill-final
+# reskill-java-final
 
 Demo project for the
 
@@ -24,7 +24,13 @@ That's it!
 
 ## Documentation
 
-auto-generated Open API documentation can be found for each project at `/swagger-ui/index.html`.
+Architecture diagram:
+
+![Architecture](diagram.webp)
+
+### Swagger UI
+
+Auto-generated Open API documentation can be found for each project at `/swagger-ui/index.html`.
 
 - [Books Service](http://localhost:8080/swagger-ui/index.html)
 - [Users Service](http://localhost:8081/swagger-ui/index.html)
