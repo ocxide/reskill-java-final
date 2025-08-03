@@ -12,6 +12,7 @@ services:
       USERS_SERVICE_DB: users
       BOOKS_SERVICE_DB: books
       BORROWINGS_SERVICE_DB: borrowings
+      NOTIFICATIONS_SERVICE_DB: notifications
 
   db:
     image: postgres
