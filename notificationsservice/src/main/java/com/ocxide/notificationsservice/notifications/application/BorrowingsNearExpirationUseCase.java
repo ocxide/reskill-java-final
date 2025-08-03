@@ -2,12 +2,13 @@ package com.ocxide.notificationsservice.notifications.application;
 
 import java.time.Duration;
 
+import com.ocxide.notificationsservice.notifications.domain.BookCopyNearExpiration;
 import com.ocxide.notificationsservice.notifications.domain.BorrowingsRepository;
 import com.ocxide.notificationsservice.notifications.domain.Notificator;
 
 import reactor.core.publisher.Mono;
 
-public record BorrowingsExpiringUseCase(
+public record BorrowingsNearExpirationUseCase(
 		Duration threshold,
 		BorrowingsRepository repository,
 		Notificator notificator) {
@@ -16,7 +17,7 @@ public record BorrowingsExpiringUseCase(
 		return repository.getAllNearExpiration(threshold)
 				.flatMap(borrowing -> {
 					var delete = repository.deleteOne(borrowing.id());
-					return notificator.onNearExpiration(borrowing).then(delete);
+					return notificator.onNearExpiration(new BookCopyNearExpiration(borrowing)).then(delete);
 				}).then();
 	}
 }

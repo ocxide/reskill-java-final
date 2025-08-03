@@ -4,7 +4,7 @@ import reactor.core.publisher.Mono;
 
 public interface Notificator {
 
-	Mono<Void> onBorrowed(Borrowing borrowing);
-	Mono<Void> onReturned(Borrowing borrowing);
-	Mono<Void> onNearExpiration(Borrowing borrowing);
+	Mono<Void> onBorrowed(BookCopyBorrowed borrowing);
+	Mono<Void> onReturned(BookCopyReturned borrowing);
+	Mono<Void> onNearExpiration(BookCopyNearExpiration borrowing);
 }

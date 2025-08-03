@@ -7,12 +7,15 @@ import java.nio.channels.CompletionHandler;
 import java.nio.channels.FileLock;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.Instant;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.ocxide.notificationsservice.notifications.domain.Borrowing;
+import com.ocxide.notificationsservice.notifications.domain.BookCopyBorrowed;
+import com.ocxide.notificationsservice.notifications.domain.BookCopyNearExpiration;
+import com.ocxide.notificationsservice.notifications.domain.BookCopyReturned;
 import com.ocxide.notificationsservice.notifications.domain.Notificator;
 
 import reactor.core.publisher.Mono;
@@ -50,7 +53,7 @@ public class FileNotificator implements Notificator {
 	}
 
 	public Mono<Void> append(Object object) {
-		var buf = ByteBuffer.wrap((object.toString() + "\n").getBytes());
+		var buf = ByteBuffer.wrap((Instant.now().toString() + ": " + object.toString() + "\n").getBytes());
 		return this.lock().handle((lock, sink) -> {
 			try (lock) {
 				lock.channel().write(buf);
@@ -63,8 +66,19 @@ public class FileNotificator implements Notificator {
 	}
 
 	@Override
-	public Mono<Void> onBorrowed(Borrowing borrowing) {
+	public Mono<Void> onBorrowed(BookCopyBorrowed borrowing) {
 		return this.append(borrowing);
 	}
+
+	@Override
+	public Mono<Void> onReturned(BookCopyReturned borrowing) {
+		return this.append(borrowing);
+	}
+
+	@Override
+	public Mono<Void> onNearExpiration(BookCopyNearExpiration borrowing) {
+		return this.append(borrowing);
+	}
+
 
 }
