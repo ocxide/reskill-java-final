@@ -29,7 +29,7 @@ public class BorrowingsController {
 	private final BorrowingsMapper mapper;
 
 	@PostMapping("/")
-	public Mono<Void> createOne(@RequestBody @Valid CreateBorrowingDTO body) {
+	public Mono<Long> createOne(@RequestBody @Valid CreateBorrowingDTO body) {
 		var borrowing = mapper.toDomain(body);
 		return createOne.createOne(borrowing);
 	}

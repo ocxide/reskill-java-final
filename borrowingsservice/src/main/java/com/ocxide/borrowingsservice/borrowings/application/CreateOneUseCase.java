@@ -13,7 +13,7 @@ import reactor.core.publisher.Mono;
 public record CreateOneUseCase(BookCopiesRepository bookCopiesRepository, BorrowingsRepository borrowingsRepository,
 		BorrowingsNotificator notificator) {
 
-	public Mono<Void> createOne(Borrowing borrowing) {
+	public Mono<Long> createOne(Borrowing borrowing) {
 		return bookCopiesRepository.getOne(borrowing.bookCopyId()).flatMap(response -> {
 			if (response.isEmpty())
 				return Mono.error(new BookCopyNotFound());
@@ -24,6 +24,6 @@ public record CreateOneUseCase(BookCopiesRepository bookCopiesRepository, Borrow
 
 			return borrowingsRepository.createOne(borrowing);
 		})
-				.flatMap(created -> notificator.onCopyBorrowed(created));
+				.flatMap(created -> notificator.onCopyBorrowed(created).map(v -> created.id()));
 	}
 }
