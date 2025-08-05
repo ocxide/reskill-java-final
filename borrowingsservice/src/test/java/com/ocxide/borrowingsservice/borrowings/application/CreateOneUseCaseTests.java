@@ -13,6 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.ocxide.borrowingsservice.borrowings.domain.BookCopiesRepository;
 import com.ocxide.borrowingsservice.borrowings.domain.BookCopy;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotAvailable;
+import com.ocxide.borrowingsservice.borrowings.domain.BookCopyNotFound;
 import com.ocxide.borrowingsservice.borrowings.domain.Borrowing;
 import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsNotificator;
 import com.ocxide.borrowingsservice.borrowings.domain.BorrowingsRepository;
@@ -35,6 +37,29 @@ public class CreateOneUseCaseTests {
 
 	@InjectMocks
 	CreateOneUseCase useCase;
+
+	@Test
+	public void shouldRejectBookCopyNotFound() {
+		var borrowing = new Borrowing(1L, 1L, 1L, Duration.ofDays(1), Instant.now());
+
+		Mockito.when(bookCopiesRepository.getOne(1L)).thenReturn(Mono.just(Optional.empty()));
+
+		StepVerifier.create(useCase.createOne(borrowing))
+				.expectError(BookCopyNotFound.class)
+				.verify();
+	}
+
+	@Test
+	public void shouldRejectBookCopyNotAvailable() {
+		var borrowing = new Borrowing(1L, 1L, 1L, Duration.ofDays(1), Instant.now());
+		var bookCopy = new BookCopy(CopyStatus.Borrowed);
+
+		Mockito.when(bookCopiesRepository.getOne(1L)).thenReturn(Mono.just(Optional.of(bookCopy)));
+
+		StepVerifier.create(useCase.createOne(borrowing))
+				.expectError(BookCopyNotAvailable.class)
+				.verify();
+	}
 
 	@Test
 	public void shouldCreteBorrowing() {
